@@ -12,7 +12,7 @@ Create a Neo4j local server with these default settings:
 
 - URL: bolt://localhost:7687
 - DB Name: "neo4j"
-- Username: "sonmt"
+- Username: "neo4j"
 - Password: "S1o0n720" 
 
 If you want to customize username & password, 
@@ -43,5 +43,5 @@ The whole process will take about 15 minutes.
 
 `python view/main_window.py`
 
-This command will start the dashboard.
+This command will start the dashboard. The main window will be firstly showed.
 

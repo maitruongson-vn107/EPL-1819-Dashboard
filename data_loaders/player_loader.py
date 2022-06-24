@@ -2,6 +2,7 @@ import pandas as pd
 import graph_connection as gc
 import re
 from tqdm import tqdm
+from utils.constant import DB
 
 
 def read_players_data():
@@ -37,7 +38,7 @@ def create_players_node_and_relationship(players_data, sub_players_data):
             except:
                 create_player_query += f"{str(key)}: \"{one_player_dict[key]}\", "
         create_player_query = create_player_query[:-2] + "})"
-        gc.conn.query(create_player_query, db='neo4j')
+        gc.conn.query(create_player_query, db=DB)
 
         # CREATE NEW PLAYER - TEAM RELATIONSHIP
         current_club = one_player_dict["current_club"]
@@ -49,4 +50,4 @@ def create_players_node_and_relationship(players_data, sub_players_data):
         for key in relationship_dict.keys():
             create_relationship_query += f"{str(key)}: \"{relationship_dict[key]}\", "
         create_relationship_query = create_relationship_query[:-2] + "}]->(t) RETURN type(r), r.name"
-        gc.conn.query(create_relationship_query, db="neo4j")
+        gc.conn.query(create_relationship_query, db=DB)

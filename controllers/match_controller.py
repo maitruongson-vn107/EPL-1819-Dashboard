@@ -1,4 +1,5 @@
 import data_loaders.graph_connection as gc
+from utils.constant import DB
 
 
 def getFixtures(game_week="All GWs"):
@@ -15,7 +16,7 @@ def getFixtures(game_week="All GWs"):
                                 f"h.home_team_goal_count, a.away_team_goal_count " \
                                 f"ORDER BY m.timestamp"
 
-    query_results = gc.conn.query(get_fixtures_gw_query)
+    query_results = gc.conn.query(get_fixtures_gw_query, db=DB)
     all_matches_details = []
 
     for rs in query_results:
@@ -28,7 +29,7 @@ def getOneMatchByTeamNames(home_team_name: str, away_team_name: str):
                            f" -[h:HOME]-> (m: MATCH) <-[a:AWAY]- " \
                            f"(t2:TEAM {{common_name: \"{away_team_name}\"}}) " \
                            f"RETURN m, h, a"
-    query_results = gc.conn.query(get_match_info_query, db="neo4j")
+    query_results = gc.conn.query(get_match_info_query, db=DB)
     match_details = {}
 
     for rs in query_results:
@@ -51,8 +52,8 @@ def getAllMatchesByTeam(team_common_name: str):
                              f"m.home_team_name, m.away_team_name, " \
                              f"h.home_team_goal_count, a.away_team_goal_count"
 
-    home_rs = gc.conn.query(get_home_matches_query)
-    away_rs = gc.conn.query(get_away_matches_query)
+    home_rs = gc.conn.query(get_home_matches_query, db=DB)
+    away_rs = gc.conn.query(get_away_matches_query, db=DB)
 
     all_matches = []
     for h_match in home_rs:
@@ -81,8 +82,8 @@ def getTeamBiggestWin(team_common_name: str):
                                  f"order by (toInteger(a.away_team_goal_count) - toInteger(h.home_team_goal_count)) " \
                                  f"desc limit 1"
 
-    home_biggest_win = dict(gc.conn.query(get_biggest_home_win_query)[0])
-    away_biggest_win = dict(gc.conn.query(get_biggest_away_win_query)[0])
+    home_biggest_win = dict(gc.conn.query(get_biggest_home_win_query, db=DB)[0])
+    away_biggest_win = dict(gc.conn.query(get_biggest_away_win_query, db=DB)[0])
 
     return home_biggest_win, away_biggest_win
 
@@ -104,8 +105,8 @@ def getTeamBiggestLoss(team_common_name: str):
                                  f"order by (toInteger(a.away_team_goal_count) - toInteger(h.home_team_goal_count)) " \
                                  f"limit 1"
 
-    home_biggest_loss = dict(gc.conn.query(get_biggest_home_loss_query)[0])
-    away_biggest_loss = dict(gc.conn.query(get_biggest_away_loss_query)[0])
+    home_biggest_loss = dict(gc.conn.query(get_biggest_home_loss_query, db=DB)[0])
+    away_biggest_loss = dict(gc.conn.query(get_biggest_away_loss_query, db=DB)[0])
 
     return home_biggest_loss, away_biggest_loss
 
@@ -127,7 +128,7 @@ def getTeamMostScoredMatch(team_common_name: str):
                                   f"order by toInteger(a.away_team_goal_count) " \
                                   f"desc limit 1"
 
-    home_most_scored = dict(gc.conn.query(get_most_scored_home_query)[0])
-    away_most_scored = dict(gc.conn.query(get_most_scored_away_query)[0])
+    home_most_scored = dict(gc.conn.query(get_most_scored_home_query, db=DB)[0])
+    away_most_scored = dict(gc.conn.query(get_most_scored_away_query, db=DB)[0])
 
     return home_most_scored, away_most_scored

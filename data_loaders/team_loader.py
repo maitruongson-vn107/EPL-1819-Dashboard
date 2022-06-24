@@ -2,6 +2,7 @@ import pandas as pd
 import graph_connection as gc
 import re
 from tqdm import tqdm
+from utils.constant import DB
 
 
 def read_teams_data():
@@ -42,6 +43,6 @@ def create_teams_node(team_full_data):
                 continue
             query += f"{str(key)}: \"{one_team_dict[key]}\", "
         query = query[:-2] + "})"
-        gc.conn.query(query, db='neo4j')
+        gc.conn.query(query, db=DB)
 
 

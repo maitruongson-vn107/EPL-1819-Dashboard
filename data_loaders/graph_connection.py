@@ -1,5 +1,5 @@
 from neo4j import GraphDatabase
-import utils.constant as const
+from utils.constant import URL, USER, PASSWORD
 
 
 class Neo4jConnection:
@@ -33,4 +33,4 @@ class Neo4jConnection:
         return response
 
 
-conn = Neo4jConnection(uri=const.URL, user=const.USER, pwd=const.PASSWORD)
+conn = Neo4jConnection(uri=URL, user=USER, pwd=PASSWORD)

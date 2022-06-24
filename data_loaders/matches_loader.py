@@ -2,6 +2,7 @@ import pandas as pd
 import graph_connection as gc
 import re
 from tqdm import tqdm
+from utils.constant import DB
 
 
 def read_matches_data():
@@ -41,7 +42,7 @@ def create_matches_node_and_relationship(matches_data, sub_matches_data):
                 continue
             create_match_query += f"{str(key)}: \"{one_match_dict[key]}\", "
         create_match_query = create_match_query[:-2] + "})"
-        gc.conn.query(create_match_query, db="neo4j")
+        gc.conn.query(create_match_query, db=DB)
 
         # CREATE HOME TEAM-MATCH RELATIONSHIP
         game_week = one_match_dict["game_week"]
@@ -56,7 +57,7 @@ def create_matches_node_and_relationship(matches_data, sub_matches_data):
         for key in home_team_dict.keys():
             create_home_relationship_query += f"{str(key)}: \"{home_team_dict[key]}\", "
         create_home_relationship_query = create_home_relationship_query[:-2] + "}]->(m) RETURN type(h), h.name"
-        gc.conn.query(create_home_relationship_query, db="neo4j")
+        gc.conn.query(create_home_relationship_query, db=DB)
 
         away_team_name = one_match_dict["away_team_name"]
         create_away_relationship_query = f"MATCH(t:TEAM), (m:MATCH) " \
@@ -68,4 +69,4 @@ def create_matches_node_and_relationship(matches_data, sub_matches_data):
         for key in away_team_dict.keys():
             create_away_relationship_query += f"{str(key)}: \"{away_team_dict[key]}\", "
         create_away_relationship_query = create_away_relationship_query[:-2] + "}]->(m) RETURN type(h), h.name"
-        gc.conn.query(create_away_relationship_query, db="neo4j")
+        gc.conn.query(create_away_relationship_query, db=DB)

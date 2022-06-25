@@ -1,12 +1,12 @@
 import pandas as pd
-import graph_connection as gc
+from . import graph_connection as gc
 import re
 from tqdm import tqdm
 from utils.constant import DB
 
 
 def read_matches_data():
-    matches_data = pd.read_csv("../csv/england-premier-league-matches-2018-to-2019-stats.csv")
+    matches_data = pd.read_csv("csv/england-premier-league-matches-2018-to-2019-stats.csv")
     sub_matches_data = matches_data[["timestamp", "date_GMT", "attendance",
                                      "home_team_name", "away_team_name", "referee", "game_week", "stadium_name",
                                      "total_goal_count", "total_goals_at_half_time"]]

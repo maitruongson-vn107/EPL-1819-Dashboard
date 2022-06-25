@@ -24,6 +24,9 @@ def getFixtures(game_week="All GWs"):
     return all_matches_details
 
 
+print(len(getFixtures(game_week="All GWs")))
+
+
 def getOneMatchByTeamNames(home_team_name: str, away_team_name: str):
     get_match_info_query = f"MATCH (t1:TEAM {{common_name: \"{home_team_name}\"}})" \
                            f" -[h:HOME]-> (m: MATCH) <-[a:AWAY]- " \

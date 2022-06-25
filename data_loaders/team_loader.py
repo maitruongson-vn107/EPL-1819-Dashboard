@@ -1,14 +1,14 @@
 import pandas as pd
-import graph_connection as gc
+from . import graph_connection as gc
 import re
 from tqdm import tqdm
 from utils.constant import DB
 
 
 def read_teams_data():
-    teams_data = pd.read_csv("../csv/england-premier-league-teams-2018-to-2019-stats.csv")
-    teams2_data = pd.read_csv("../csv/england-premier-league-teams2-2018-to-2019-stats.csv")
-    matches_data = pd.read_csv("../csv/england-premier-league-matches-2018-to-2019-stats.csv")
+    teams_data = pd.read_csv("csv/england-premier-league-teams-2018-to-2019-stats.csv")
+    teams2_data = pd.read_csv("csv/england-premier-league-teams2-2018-to-2019-stats.csv")
+    matches_data = pd.read_csv("csv/england-premier-league-matches-2018-to-2019-stats.csv")
 
     stadiums_data = matches_data[["home_team_name", "stadium_name"]].drop_duplicates()
     stadiums_data.columns = ["common_name", "stadium_name"]

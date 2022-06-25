@@ -1,12 +1,12 @@
 import pandas as pd
-import graph_connection as gc
+from . import graph_connection as gc
 import re
 from tqdm import tqdm
 from utils.constant import DB
 
 
 def read_players_data():
-    players_data = pd.read_csv("../csv/england-premier-league-players-2018-to-2019-stats.csv")
+    players_data = pd.read_csv("csv/england-premier-league-players-2018-to-2019-stats.csv")
     sub_players_data = players_data[["full_name", "birthday_GMT",
                                      "position", "current_club", "nationality",
                                      "goals_overall", "goals_home", "goals_away",

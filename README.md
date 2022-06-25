@@ -1,8 +1,14 @@
 # EPL-1819-Dashboard
+**OTH Regensburg (Summer Semester 2022)** \
+**"Knowledge Graphs" Course - Individual Project** \
 Dashboard showing information about English Premier League season 2018-2019, via Neo4j Graph Database
 
 **ABOUT THE PROJECT**
 
+English Premier League is one of the top national league in Europe as well as all over the world.
+
+For the "Knowledge Graphs" course at OTH summer 2022, I created a dashboard application which provides information about
+EPL season 2018-2019, using neo4j as the local database server.
 
 **STEPS TO RUN THE APPLICATION**
 
@@ -33,15 +39,15 @@ Install required packages for the application: \
 
 3.1. Load Data From CSV Files to Neo4j DB
 
-`python data_loaders/data_loaders.py` 
+`python main_data_loader.py` 
 
-This command will reset the current DB "ne4j" in the local machine 
+This command will reset the current DB "neo4j" in the local machine 
 and start loading EPL 18/19 data from the CSV files to the graph database. \
-The whole process will take about 15 minutes.
+The whole process will take less than 2 minutes.
 
 3.2. Run the dashboard
 
-`python view/main_window.py`
+`python main_dashboard.py`
 
 This command will start the dashboard. The main window will be firstly showed.
 

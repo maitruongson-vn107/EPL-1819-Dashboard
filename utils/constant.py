@@ -1,4 +1,4 @@
 URL = "bolt://localhost:7687"
 USER = "neo4j"
 PASSWORD = "S1o0n720"
-DB = "neo4j"
+DB = "epl1819"

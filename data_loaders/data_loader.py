@@ -21,8 +21,6 @@ def main():
     create_players_node_and_relationship(players_data, sub_players_data)
 
     matches_data, sub_matches_data = read_matches_data()
-    create_matches_node_and_relationship(matches_data, sub_matches_data)
-
-# if __name__ == "__main__":
+    create_matches_node_and_relationship(matches_data, sub_matches_data)\
 
 

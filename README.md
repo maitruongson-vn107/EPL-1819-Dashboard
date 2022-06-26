@@ -14,15 +14,18 @@ EPL season 2018-2019, using neo4j as the local database server.
 
 **1. Set Neo4j Local Server**
 
-Create a Neo4j local server with these default settings:
+Create a new Neo4j DBMS or use a currently working one.
+
+Within that DBMS, create a database named **"epl1819"**. 
+All the configurations are listed below:
 
 - URL: bolt://localhost:7687
-- DB Name: "neo4j"
+- DB Name: "epl1819"
 - Username: "neo4j"
 - Password: "S1o0n720" 
 
-If you want to customize username & password, 
-you can change the constant value in `/utils/constant.py` file
+If you want to customize these configurations, 
+you can change the constant values in `/utils/constant.py` file
 
 **2. Create Python environments**
 
